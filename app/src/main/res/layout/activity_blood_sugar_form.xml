@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BloodSugarForm">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blood Sugar Form"
+        android:textSize="30sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/dateV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="YYYY-MM-DD"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time:"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/timeV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="hh:mm"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blood Sugar Concentration:"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/sugar_concV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="5.0"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blood Sugar Unit:"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/sugar_unitV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="mmol"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Measured:"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/measuredV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Before Breakfast"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notes:"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/notesV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Submit"
+        />
+
+
+</LinearLayout>
