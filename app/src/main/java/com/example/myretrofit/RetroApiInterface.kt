@@ -13,6 +13,7 @@ interface RetroApiInterface {
     //provides the functions and the instance, which was separate in my first room
 
     @GET("ngov94")
+    //@GET("blood_sugar_data.json")
     suspend fun getAllBloodSugarRecords(): Response<List<BloodSugar>>// where the call is actually happening
     //we are going to change this to suspend function
     //why? All the network calls should be part of coroutines
