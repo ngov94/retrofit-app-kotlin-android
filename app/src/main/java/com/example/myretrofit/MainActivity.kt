@@ -8,6 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.schedulers.Schedulers.io
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,7 +20,7 @@ import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
 
-    var bloodSugarList = ArrayList<BloodSugar>()
+    var bloodSugarListAPI = ArrayList<BloodSugar>()
     lateinit var adapter:BloodSugarAdapter
     lateinit var vm: BloodSugarViewModel
 
@@ -30,13 +35,35 @@ class MainActivity : AppCompatActivity() {
         val recyclerView:RecyclerView = findViewById(R.id.recyclerViewBS)
         recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
 
-        vm.bSugarList.observe(this){
-            // attack to recycler view adapter
-            adapter = BloodSugarAdapter(it)
-            recyclerView.adapter = adapter
-        }
+//        vm.bSugarList.observe(this){
+//            // attack to recycler view adapter
+//            adapter = BloodSugarAdapter(it)
+//            recyclerView.adapter = adapter
+//        }
 
-        vm.getAllBloodSugarRecords()
+       // vm.getAllBloodSugarRecords()
+//        vm.getAllApiBloodSugar().subscribe{
+//            i -> bloodSugarListAPI.addAll(i)
+//            println(bloodSugarListAPI)
+//            adapter = BloodSugarAdapter(bloodSugarListAPI)
+//            recyclerView.adapter = adapter
+//        }
+
+        vm.getAllApiBloodSugar()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onNext = {
+                    item ->
+                    println("My Observable user list $item")
+                    adapter = BloodSugarAdapter(item)
+                    recyclerView.adapter = adapter
+                },
+                onError = {e -> "This is my error: $e"}
+            )
+
+
+
 
         val fab: ExtendedFloatingActionButton = findViewById(R.id.fab)
 

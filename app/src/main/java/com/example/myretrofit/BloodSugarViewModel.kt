@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,6 +19,7 @@ class BloodSugarViewModel(private val repo: BloodSugarRepository) : ViewModel(){
 
     var bSugarList = MutableLiveData<List<BloodSugar>>()
 
+
     fun getAllBloodSugarRecords(){
         CoroutineScope(Dispatchers.IO).launch { //there are 3 types of dispatch...we want to use inputoutput b/c we are using get
             var res = repo.getAllBloodSugarRecords()
@@ -25,6 +27,10 @@ class BloodSugarViewModel(private val repo: BloodSugarRepository) : ViewModel(){
                 bSugarList.postValue(res.body())
             }
         }
+    }
+
+    fun getAllApiBloodSugar(): Observable<List<BloodSugar>> {
+        return repo.getAllApiBloodSugar()
     }
 
 
