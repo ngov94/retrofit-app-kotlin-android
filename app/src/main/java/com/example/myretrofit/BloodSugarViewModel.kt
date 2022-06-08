@@ -30,7 +30,7 @@ class BloodSugarViewModel(private val repo: BloodSugarRepository) : ViewModel(){
     }
 
     fun getAllApiBloodSugar(): Observable<List<BloodSugar>> {
-        return repo.getAllApiBloodSugar()
+        return repo.getAllBloodSugar()
     }
 
 

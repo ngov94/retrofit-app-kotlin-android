@@ -1,6 +1,7 @@
 package com.example.myretrofit
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -15,7 +16,7 @@ import java.util.*
 interface RetroApiInterface {
     //provides the functions and the instance, which was separate in my first room
 
-    @GET("ngov94")
+    @GET("posts")
     //@GET("blood_sugar_data.json")
     suspend fun getAllBloodSugarRecords(): Response<List<BloodSugar>>// where the call is actually happening
     //we are going to change this to suspend function
@@ -23,17 +24,18 @@ interface RetroApiInterface {
 //    @GET("ngov94")
 //    suspend fun getAllUsers(): Response<List<Users>>
 
-    @GET("ngov94/posts")
-    fun getAllApiBloodSugar(): Observable<List<BloodSugar>>
+    @GET("posts")
+    fun getAllApiBloodSugar(): Single<List<BloodSugar>>
 
-    @POST("ngov94/posts")
+    @POST("posts")
     suspend fun createBloodSugar(@Body requestBody: RequestBody): Response<ResponseBody>
 
     companion object{
 
 //        private var BASE_URL = "https://ngov94.github.io/data/"
 
-        private var BASE_URL = "https://f4ed-136-185-8-167.in.ngrok.io/"
+        private var BASE_URL = "https://23d2-136-185-8-167.in.ngrok.io/ngov94/" //running on Dinesh's machine
+//        Retrofit without RXKotlin
 //        fun create(): RetroApiInterface{
 //            val retrofit = Retrofit.Builder()
 //                .addConverterFactory(GsonConverterFactory.create())
@@ -44,7 +46,7 @@ interface RetroApiInterface {
         fun create(): RetroApiInterface{
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create()) // RxJava adapter for Retrofit
                 .baseUrl(BASE_URL)
                 .build()
             return retrofit.create(RetroApiInterface::class.java)

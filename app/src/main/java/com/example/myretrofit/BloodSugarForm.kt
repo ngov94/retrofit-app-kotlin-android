@@ -19,7 +19,8 @@ class BloodSugarForm : AppCompatActivity() {
         setContentView(R.layout.activity_blood_sugar_form)
 
         val intr = RetroApiInterface.create()
-        val repo = BloodSugarRepository(intr)
+        val dao = AppDatabase.getInstance(this)?.bloodSugarDao()!!
+        val repo = BloodSugarRepository(intr, dao)
         vm = BloodSugarViewModel(repo)
 
         submit.setOnClickListener {
