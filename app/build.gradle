@@ -17,7 +17,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -53,6 +52,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-rc01"
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
     //RXKotlin
     implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
@@ -62,6 +62,19 @@ dependencies {
     //RoomDB
     def room_version = "2.4.2"
     implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava3:$room_version"
+
+    //Mockito Testing
+    testImplementation "org.mockito:mockito-core:4.6.1"
+    //testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.3"
+    //testimplementation "com.squareup.retrofit2:retrofit-mock:2.5.0"
+
+    //helped to deal with final class
+    testImplementation "org.mockito:mockito-inline:2.8.47"
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }

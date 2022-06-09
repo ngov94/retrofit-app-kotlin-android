@@ -17,13 +17,13 @@ class BloodSugarRepository(val inter: RetroApiInterface, private val dao: BloodS
         return concat
     }
 
-    private fun getAllApiBloodSugar(): Observable<List<BloodSugar>>{
+    fun getAllApiBloodSugar(): Observable<List<BloodSugar>>{
         return inter.getAllApiBloodSugar()
             .toObservable()
             .filter { it.isNotEmpty() }
     }
 
-    private fun getAllDBBloodSugar(): Observable<List<BloodSugar>>{
+    fun getAllDBBloodSugar(): Observable<List<BloodSugar>>{
         //addBloodSugar()
         return dao.selectAllBloodSugar()
             .toObservable()

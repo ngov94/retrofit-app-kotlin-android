@@ -3,6 +3,7 @@ package com.example.myretrofit
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,18 +20,27 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import timber.log.Timber
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var adapter:BloodSugarAdapter
     lateinit var vm: BloodSugarViewModel
     var bloodSugarList = ArrayList<BloodSugar>()
-
+    var isDebugMode = "dev"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        Timber.d("timber inside main activity")
+//        Timber.i
+//        Timber.v
+        //Interceptor
+
+        println("Inside Main activity create fun")
 
         val dao = AppDatabase.getInstance(this)?.bloodSugarDao()!!
         val intr = RetroApiInterface.create()
@@ -40,6 +50,14 @@ class MainActivity : AppCompatActivity() {
         val recyclerView:RecyclerView = findViewById(R.id.recyclerViewBS)
         recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
 
+        if(isDebugMode == "dev"){
+            Log.d("debug", "inside the mainActivity")
+            Log.e("error", "error message")
+            Log.i("info", "inside the mainActivity")
+            Log.w("warn", "jfhjdh jfdkfhk")
+            Log.v("verbose", "jdkf jdkfkd")
+        }
+
 //        //Retrofit with LiveData
 //        vm.bSugarList.observe(this){
 //            // attack to recycler view adapter
@@ -48,6 +66,23 @@ class MainActivity : AppCompatActivity() {
 //        }
         adapter = BloodSugarAdapter(bloodSugarList)
         recyclerView.adapter = adapter
+
+        try{
+            var x = 10/0
+        } catch (e: Exception){
+            println("This is the error:: $e")
+        }
+
+        try{
+            var a = arrayOf(1,2,3)
+            println(a[2])
+        } catch (e: Exception){
+            println("This is the error:: $e")
+        } finally {
+            println("I get called always even when there is no exception")
+        }
+
+
 
 
         // Retrofit with RXKotlin

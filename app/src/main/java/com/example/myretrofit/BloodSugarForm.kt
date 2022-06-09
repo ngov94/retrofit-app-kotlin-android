@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_blood_sugar_form.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
+import timber.log.Timber
 
 class BloodSugarForm : AppCompatActivity() {
     lateinit var vm: BloodSugarViewModel
@@ -17,6 +18,8 @@ class BloodSugarForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blood_sugar_form)
+
+        Timber.d("timber inside")
 
         val intr = RetroApiInterface.create()
         val dao = AppDatabase.getInstance(this)?.bloodSugarDao()!!

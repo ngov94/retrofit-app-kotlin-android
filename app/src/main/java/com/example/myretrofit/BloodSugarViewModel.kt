@@ -14,6 +14,7 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
+import timber.log.Timber
 
 class BloodSugarViewModel(private val repo: BloodSugarRepository) : ViewModel(){
 
@@ -30,6 +31,7 @@ class BloodSugarViewModel(private val repo: BloodSugarRepository) : ViewModel(){
     }
 
     fun getAllApiBloodSugar(): Observable<List<BloodSugar>> {
+        Timber.d("timber inside view model")
         return repo.getAllBloodSugar()
     }
 
@@ -51,3 +53,8 @@ class BloodSugarViewModel(private val repo: BloodSugarRepository) : ViewModel(){
     }
 
 }
+
+
+//Types of Testing Frameworks
+//  1. JUnit + Mockito --> Unit Testing
+//  2. Espresso --> UI Testing
